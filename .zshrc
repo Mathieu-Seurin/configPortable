@@ -88,3 +88,6 @@ if [ -f ~/.aliases ]; then
 fi
 
 source ~/.zle.zsh
+
+
+. /home/mathieu/torch/install/bin/torch-activate

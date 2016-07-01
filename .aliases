@@ -1,0 +1,100 @@
+##ALIASES
+
+#Clock
+function __advanceClock() {sudo date --set="$@ day"}
+alias advanceClock="__advanceClock"
+alias rsClock="sudo hwclock --hctosys;sudo date --set='-1 hour'"
+alias clock='date +%T'
+
+#General
+alias reload='. ~/.zshrc'
+alias _='sudo'
+alias aliases='em ~/.aliases'
+alias emacsD='em ~/.emacs.d/perso/bind.el'
+alias rs='reset'
+alias shutdown='sudo /sbin/shutdown'
+alias reboot='sudo /sbin/reboot'
+
+#Github
+alias gc='git commit -m'
+alias gca='git commit -am'
+alias gph='git push'
+alias gpl='git pull'
+alias gl='git log'
+alias ga='git add'
+
+function __cpConfig() {
+        cp -rf ~/.emacs.d ~/configPortable 
+        cp .zle.zsh ~/configPortable
+        cp .zshrc ~/configPortable
+        cp .aliases ~/configPortable
+}
+alias cpConfig="__cpConfig"
+
+        
+#Keyboard
+alias bépo='eog /home/mathieu/Images/Tools/bépo.png'
+alias left='eog /home/mathieu/Images/Tools/left.png' 
+alias right='eog /home/mathieu/Images/Tools/right.png' 
+alias fr='setxkbmap fr; xmodmap ~/.xmodmapfr'
+alias be='setxkbmap fr bepo;xmodmap ~/.xmodmapbe'
+alias noob='setxkbmap fr'
+
+#Launcher
+alias em='emacs -nw'
+alias py3='python3'
+alias py='python'
+alias timer='python2 /home/mathieu/Documents/Github/Timer/timer.py& disown'
+alias guitar='cd /home/mathieu/Documents/App/Yousician\ Launcher; ./Yousician\ Launcher & disown'
+alias guitaradvance="sudo date --set='1 day'; cd /home/mathieu/Documents/App/Yousician\ Launcher; ./Yousician\ Launcher & disown"
+function __evince() {evince "$@" & disown}
+alias ev='__evince'
+alias op='xdg-open'
+alias cleanAll='cd ~; rm -i **/*~'
+alias clean='rm -i **/*~'
+alias battery='sudo powertop --auto-tune'
+                
+#Navigation
+alias github='cd ~/Documents/Github'
+alias dat='cd ~/Documents/Github/dat-eeg/code'
+alias stage='cd ~/Documents/Github/stageNN'
+alias master='~/Documents/Master'
+alias s2='~/Documents/Master/S2'
+alias tal='~/Documents/Master/S2/TAL'
+alias arf='~/Documents/Master/S2/ARF'
+alias iamsi='~/Documents/Master/S2/IAMSI'
+
+alias datCpSend='dat; cd ..; tar -cf code.tar code/*.py; scp code.tar seurin@gate-ia.lip6.fr:~'
+
+                        
+#Network
+alias rswifi='sudo service network-manager restart'
+alias pingg='ping google.com'
+alias jussieu='ssh 3504761@ssh.ufr-info-p6.jussieu.fr'
+alias lip6='ssh seurin@gate-ia.lip6.fr'
+        
+#Package Manager
+alias agi='sudo apt-get install'
+alias agr='sudo apt-get remove'
+alias agug='sudo apt-get upgrade'
+alias agud='sudo apt-get update'
+alias aga='sudo apt-get autoremove'
+
+
+#Small Script
+function __splitFlac() {
+        cat "$1" | shnsplit -o flac -t "%n - %p - %t" "$2"
+        cuetag "$1" *.flac
+}
+
+
+function __flacToMp3() {for f in *.flac; do avconv -i "$f" -ab 320k -map_metadata 0 -id3v2_version 3 "${f%.*}.mp3"; rm -rf "$f"; done}
+
+function __splitAndConvert() {__splitFlac $1 $2; rm $2 $1; __flacToMp3 }
+
+
+
+                
+alias splitFlac=__splitFlac
+alias flac2Mp3=__flacToMp3
+alias splitAndConvert=__splitAndConvert
