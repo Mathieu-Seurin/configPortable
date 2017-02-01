@@ -9,8 +9,9 @@ alias clock='date +%T'
 #General
 alias reload='. ~/.zshrc'
 alias _='sudo'
-alias aliases='em ~/.aliases'
-alias emacsD='em ~/.emacs.d/perso/bind.el'
+alias aliases='ema ~/.aliases'
+alias emacsBind='em ~/.emacs.d/perso/bind.el'
+alias emacsD='em ~/.emacs'
 alias rs='reset'
 alias shutdown='sudo /sbin/shutdown'
 alias reboot='sudo /sbin/reboot'
@@ -31,17 +32,11 @@ function __cpConfig() {
 }
 alias cpConfig="__cpConfig"
 
-        
-#Keyboard
-alias bépo='eog /home/mathieu/Images/Tools/bépo.png'
-alias left='eog /home/mathieu/Images/Tools/left.png' 
-alias right='eog /home/mathieu/Images/Tools/right.png' 
-alias fr='setxkbmap fr; xmodmap ~/.xmodmapfr'
-alias be='setxkbmap fr bepo;xmodmap ~/.xmodmapbe'
-alias noob='setxkbmap fr'
-
 #Launcher
-alias -g em='emacs -nw'
+
+function __emacs() {emacs "$@" & disown}
+alias -g em='__emacs'
+alias -g ema='emacs -nw'
 alias py3='python3'
 alias py='python'
 alias timer='python2 /home/mathieu/Documents/Github/Timer/timer.py& disown'
@@ -50,28 +45,40 @@ alias guitaradvance="sudo date --set='1 day'; cd /home/mathieu/Documents/App/You
 function __evince() {evince "$@" & disown}
 alias ev='__evince'
 alias op='xdg-open'
-alias cleanAll='cd ~; rm -i **/*~'
-alias clean='rm -i **/*~'
+alias cleanAll='cd ~; rm **/*~; cd -'
+alias clean='rm **/*~'
 alias battery='sudo powertop --auto-tune'
-                
+alias matlab='matlab -softwareopengl &; disown %matlab'
+
+function __compileWithBib() {pdflatex "$@".tex; bibtex "$@"; pdflatex "$@".tex; pdflatex "$@".tex;}
+alias compileWithBib='__compileWithBib'
+
+                                
 #Navigation
 alias github='cd ~/Documents/Github'
 alias dat='cd ~/Documents/Github/dat-eeg/code'
+alias rap='cd ~/Documents/Github/dat-eeg/rapport/5603834gfdxvd/'
+alias tod='cd ~/Documents/Github/dat-eeg/code/MyTest/'
+alias run='op ~/Images/Sport/1-3.png'
+        
 alias stage='cd ~/Documents/Github/stageNN'
 alias master='~/Documents/Master'
-alias s2='~/Documents/Master/S2'
-alias tal='~/Documents/Master/S2/TAL'
-alias arf='~/Documents/Master/S2/ARF'
-alias iamsi='~/Documents/Master/S2/IAMSI'
-
+alias as='~/Documents/Master/AS'
+alias fdms='~/Documents/Master/FDMS'
+alias rdfia='~/Documents/Master/RDFIA'
+alias ri='~/Documents/Master/RI'
+alias bdle='~/Documents/Master/BDLE'
+alias papier='~/Documents/Papiers\ Importants'
+        
 alias datCpSend='dat; cd ..; tar -cf code.tar code/*.py; scp code.tar seurin@gate-ia.lip6.fr:~'
 
+function __cpTemplateAndRename() {cp ~/Documents/Master/template.tex .;mv template.tex ./"$1"}
+alias templateTex='__cpTemplateAndRename'
                         
 #Network
 alias rswifi='sudo service network-manager restart'
 alias pingg='ping google.com'
 alias jussieu='ssh 3504761@ssh.ufr-info-p6.jussieu.fr'
-alias lip6='ssh seurin@gate-ia.lip6.fr'
         
 #Package Manager
 alias agi='sudo apt-get install'
@@ -88,10 +95,9 @@ function __splitFlac() {
 }
 
 
-function __flacToMp3() {for f in *.flac; do avconv -i "$f" -ab 320k -map_metadata 0 -id3v2_version 3 "${f%.*}.mp3"; rm -rf "$f"; done}
+function __flacToMp3() {for f in *.flac; do avconv -i "$f" -qscale:a 0  -map_metadata 0 -id3v2_version 3 "${f%.*}.mp3"; done}
 
-function __splitAndConvert() {__splitFlac $1 $2; rm $2 $1; __flacToMp3 }
-
+function __splitAndConvert() {__splitFlac $1 $2;  __flacToMp3 }
 
 
                 

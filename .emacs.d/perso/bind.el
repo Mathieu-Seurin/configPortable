@@ -22,8 +22,8 @@
 ;; Déplacement avec grain 2:
 (global-set-key [?\M-o] 'beginning-of-buffer)
 (global-set-key [?\M-t] 'backward-word)
-(global-set-key [?\M-r] (lambda () (interactive) (next-line 12)))
-(global-set-key [?\M-s] (lambda () (interactive) (previous-line 12)))
+(global-set-key [?\M-r] (lambda () (interactive) (next-line 14)))
+(global-set-key [?\M-s] (lambda () (interactive) (previous-line 14)))
 
 (global-set-key [?\M-n] 'forward-word)
 (global-set-key [?\M-v] 'end-of-buffer)
@@ -57,13 +57,14 @@
 
 ;indent region
 (global-set-key [?\C-k] 'indent-rigidly)
+(global-set-key [?\M-k] 'hs-toggle-hiding)
 ;comment-region et uncomment-region
 (global-set-key [?\C-z] 'comment-region)
 (global-set-key [?\M-z] 'uncomment-region)
 
 ;goto et "repeat X times"
-(global-set-key [?\C-w] 'goto-line)
-(global-set-key [?\M-w] 'universal-argument)
+(global-set-key [?\M-w] 'goto-line)
+(global-set-key [?\C-w] 'universal-argument)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Touches Fx, deux mains ;;;;;;;
@@ -92,7 +93,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; ligne de repos auie,
-(global-set-key [?\C-p] 'switch-to-buffer)
+(global-set-key [?\C-p] 'write-print)
 (global-set-key [?\C-e] 'other-window)
 (global-set-key [?\M-e] 'previous-buffer)
 
@@ -154,8 +155,8 @@
 (global-set-key [C-backspace] 'backward-kill-word) ;; arrière
 
 ;;      reste de la ligne
-(global-set-key [M-delete] 'kill-line) ;; avant
-(global-set-key [M-backspace] 'backward-kill-line) ;; arrière
+(global-set-key [M-delete] 'backward-kill-line) ;; avant
+(global-set-key [M-backspace] 'kill-line) ;; arrière
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
