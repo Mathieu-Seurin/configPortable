@@ -68,6 +68,7 @@
 (defun latex-addon ()
   "Add two things : default figure and default
 enumerate"
+  (interactive)
   (global-set-key [?\C-p] 'latex-add-figure)
   (global-set-key (kbd "C-é") 'latex-add-enum)
   (global-set-key [?\M-p] 'latex-add-double-figure)

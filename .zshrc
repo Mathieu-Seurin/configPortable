@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/mathieu/.oh-my-zsh
+  export ZSH=/home/seurin/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -89,6 +89,3 @@ fi
 
 source ~/.zle.zsh
 
-
-. /home/mathieu/torch/install/bin/torch-activate
-. /home/mathieu/torch/install/bin/torch-activate
