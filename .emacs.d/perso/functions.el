@@ -1,3 +1,29 @@
+;; TOOLS
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+(global-set-key (kbd "C-c e") 'eval-and-replace)
+
+
+(global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
+(defun un-indent-by-removing-4-spaces ()
+  "remove 4 spaces from beginning of of line"
+  (interactive)
+  (save-excursion
+    (save-match-data
+      (beginning-of-line)
+      ;; get rid of tabs at beginning of line
+      (when (looking-at "^\\s-+")
+        (untabify (match-beginning 0) (match-end 0)))
+      (when (looking-at "^    ")
+                (replace-match "")))))
+
 (defun other-window-backward ()
 "select other window clockwise"
 (interactive)
@@ -25,13 +51,63 @@
      (list (line-beginning-position)
 	      (line-beginning-position 2)))))
 
-(defun write-print ()
+
+
+;; PYTHON2 TOOLS
+(defun py2-write-print ()
+  "Small function that write print and put cursor inside parenthesis"
+  (interactive)
+  (insert "print \"\", ")
+  (backward-char 3)
+  )
+
+(defun py2-write-for ()
+  "Small function that write a for"
+  (interactive)
+  (insert "for i in range():\n    pass")
+  (backward-char 11)
+  )
+
+(defun python-add-on ()
+  "Add two things : default figure and default
+enumerate"
+  (interactive)
+  (global-set-key [?\C-p] 'py2-write-print)
+  (global-set-key (kbd "C-é") 'py2-write-for)
+  (global-set-key (kbd "\r") 'newline-and-indent)
+
+  (lambda () (setq indent-tabs-mode nil)
+        (setq tab-width 4)
+        (setq python-indent 4))
+)
+
+
+;; LUA TOOLS
+(defun lua-write-print ()
   "Small function that write print and put cursor inside parenthesis"
   (interactive)
   (insert "print(\"\",)")
   (backward-char 3)
   )
 
+(defun lua-write-for ()
+  "Small function that write a for"
+  (interactive)
+  (insert "for i=1: do\n\nend")
+  (backward-char 8)
+  )
+
+
+(defun lua-add-on ()
+  "Add two things : default figure and default
+enumerate"
+  (interactive)
+  (global-set-key [?\C-p] 'lua-write-print)
+  (global-set-key (kbd "C-é") 'lua-write-for)
+)
+
+
+;; LATEX TOOLS
 (defun latex-add-figure ()
   (interactive)
   (insert "\\begin{figure}[ht]
@@ -72,5 +148,4 @@ enumerate"
   (global-set-key [?\C-p] 'latex-add-figure)
   (global-set-key (kbd "C-é") 'latex-add-enum)
   (global-set-key [?\M-p] 'latex-add-double-figure)
-
 )

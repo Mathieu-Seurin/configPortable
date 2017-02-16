@@ -89,3 +89,11 @@ fi
 
 source ~/.zle.zsh
 
+source /opt/ros/indigo/setup.zsh
+source ~/catkin_ws/devel/setup.zsh
+
+
+export GAZEBO_MODEL_PATH=$(rospack find arm_scenario_simulator)/models:$GAZEBO_MODEL_PATH
+
+
+. /home/seurin/torch/install/bin/torch-activate
