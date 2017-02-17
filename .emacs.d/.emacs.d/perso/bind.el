@@ -32,8 +32,6 @@
 ;; Suppression main droite ;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key [?\C-'] 'grep-find)
-
 (global-set-key [?\C-q] 'delete-char)
 (global-set-key [?\M-q] 'kill-word)
 
@@ -151,8 +149,7 @@
 ;;    Vers l'avant/ vers l'arrière:
 ;;      caractère :
 (global-set-key [delete] 'delete-char) ;; avant
-(global-set-key (kbd "DEL") 'delete-backward-char) ;; arrière
-;;(global-set-key [backspace] 'backward-delete-char-untabify) 
+(global-set-key [backspace] 'backward-delete-char-untabify) ;; arrière
 ;;      mot
 (global-set-key [C-delete] 'kill-word) ;; avant
 (global-set-key [C-backspace] 'backward-kill-word) ;; arrière
@@ -161,7 +158,6 @@
 (global-set-key [M-delete] 'backward-kill-line) ;; avant
 (global-set-key [M-backspace] 'kill-line) ;; arrière
 
-(global-set-key (kbd "RET") 'newline-and-indent) ;; arrière
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bonux ;;;;;;;;;;;;;;;;;;;;;;;;

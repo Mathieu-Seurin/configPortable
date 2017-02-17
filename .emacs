@@ -84,3 +84,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+(auto-insert-mode)  ;;; Adds hook to find-files-hook
+(setq auto-insert-directory "~/.emacs.d/perso/templates/") ;;; Or use custom, *NOTE* Trailing slash important
+(setq auto-insert-query nil) ;;; If you don't want to be prompted before insertion
+(define-auto-insert "\.py" "python-template.py")
+(define-auto-insert "\.tex" "tex-template.tex")

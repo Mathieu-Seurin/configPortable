@@ -32,6 +32,8 @@
 ;; Suppression main droite ;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(global-set-key [?\C-'] 'grep-find)
+
 (global-set-key [?\C-q] 'delete-char)
 (global-set-key [?\M-q] 'kill-word)
 
@@ -57,6 +59,7 @@
 
 ;indent region
 (global-set-key [?\C-k] 'indent-rigidly)
+(global-set-key [?\M-k] 'hs-toggle-hiding)
 ;comment-region et uncomment-region
 (global-set-key [?\C-z] 'comment-region)
 (global-set-key [?\M-z] 'uncomment-region)
@@ -148,7 +151,8 @@
 ;;    Vers l'avant/ vers l'arrière:
 ;;      caractère :
 (global-set-key [delete] 'delete-char) ;; avant
-(global-set-key [backspace] 'backward-delete-char-untabify) ;; arrière
+(global-set-key (kbd "DEL") 'delete-backward-char) ;; arrière
+;;(global-set-key [backspace] 'backward-delete-char-untabify) 
 ;;      mot
 (global-set-key [C-delete] 'kill-word) ;; avant
 (global-set-key [C-backspace] 'backward-kill-word) ;; arrière

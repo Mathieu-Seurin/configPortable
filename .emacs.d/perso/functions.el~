@@ -103,6 +103,7 @@ enumerate"
   (interactive)
   (global-set-key [?\C-p] 'lua-write-print)
   (global-set-key (kbd "C-é") 'lua-write-for)
+  (setq tab-width 4)
 )
 
 
