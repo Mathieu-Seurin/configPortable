@@ -58,8 +58,10 @@
 
 
 ;indent region
-(global-set-key [?\C-k] 'indent-rigidly)
-(global-set-key [?\M-k] 'hs-toggle-hiding)
+(global-set-key [?\C-k] 'indent-rigidly-1)
+(global-set-key (kbd "C-S-K") 'outdent-rigidly-1)
+
+
 ;comment-region et uncomment-region
 (global-set-key [?\C-z] 'comment-region)
 (global-set-key [?\M-z] 'uncomment-region)

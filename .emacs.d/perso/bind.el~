@@ -59,7 +59,10 @@
 
 ;indent region
 (global-set-key [?\C-k] 'indent-rigidly)
-(global-set-key [?\M-k] 'hs-toggle-hiding)
+(global-set-key (kbd "C-S-K") (lambda () (interactive) (indent-rigidly -n 1)))
+;;(global-set-key (kbd "C-S-K") 'goto-line )
+
+
 ;comment-region et uncomment-region
 (global-set-key [?\C-z] 'comment-region)
 (global-set-key [?\M-z] 'uncomment-region)
@@ -161,6 +164,7 @@
 (global-set-key [M-delete] 'backward-kill-line) ;; avant
 (global-set-key [M-backspace] 'kill-line) ;; arrière
 
+(global-set-key (kbd "RET") 'newline-and-indent) ;; arrière
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bonux ;;;;;;;;;;;;;;;;;;;;;;;;

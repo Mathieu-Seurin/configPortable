@@ -1,4 +1,20 @@
 ;; TOOLS
+(defun indent-rigidly-n (n)
+  "Indent the region, or otherwise the current line, by N spaces."
+  (let* ((use-region (and transient-mark-mode mark-active))
+         (rstart (if use-region (region-beginning) (point-at-bol)))
+         (rend   (if use-region (region-end)       (point-at-eol)))
+         (deactivate-mark "irrelevant")) ; avoid deactivating mark
+    (indent-rigidly rstart rend n)))
+(defun indent-rigidly-1 ()
+  "Indent the region, or otherwise the current line, by 1 space."
+  (interactive)
+  (indent-rigidly-n 1))
+(defun outdent-rigidly-1 ()
+  "Indent the region, or otherwise the current line, by -1 space."
+  (interactive)
+  (indent-rigidly-n -1))
+
 (defun eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)
@@ -72,8 +88,8 @@
   "Add two things : default figure and default
 enumerate"
   (interactive)
-  (global-set-key [?\C-p] 'py2-write-print)
-  (global-set-key (kbd "C-é") 'py2-write-for)
+  (local-set-key [?\C-p] 'py2-write-print)
+  (local-set-key (kbd "C-é") 'py2-write-for)
 
   (lambda () (setq indent-tabs-mode nil)
         (setq tab-width 4)
@@ -101,8 +117,8 @@ enumerate"
   "Add two things : default figure and default
 enumerate"
   (interactive)
-  (global-set-key [?\C-p] 'lua-write-print)
-  (global-set-key (kbd "C-é") 'lua-write-for)
+  (local-set-key [?\C-p] 'lua-write-print)
+  (local-set-key (kbd "C-é") 'lua-write-for)
 )
 
 
@@ -144,7 +160,7 @@ enumerate"
   "Add two things : default figure and default
 enumerate"
   (interactive)
-  (global-set-key [?\C-p] 'latex-add-figure)
-  (global-set-key (kbd "C-é") 'latex-add-enum)
-  (global-set-key [?\M-p] 'latex-add-double-figure)
+  (local-set-key [?\C-p] 'latex-add-figure)
+  (local-set-key (kbd "C-é") 'latex-add-enum)
+  (local-set-key [?\M-p] 'latex-add-double-figure)
 )
