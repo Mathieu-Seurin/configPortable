@@ -77,6 +77,13 @@
   (backward-char 3)
   )
 
+(defun py2-write-rawInput ()
+  "Small function that write a for"
+  (interactive)
+  (insert "raw_input()")
+  )
+
+
 (defun py2-write-for ()
   "Small function that write a for"
   (interactive)
@@ -89,6 +96,8 @@
 enumerate"
   (interactive)
   (local-set-key [?\C-p] 'py2-write-print)
+  (local-set-key [?\M-p] 'py2-write-rawInput)
+
   (local-set-key (kbd "C-é") 'py2-write-for)
 
   (lambda () (setq indent-tabs-mode nil)
@@ -108,8 +117,14 @@ enumerate"
 (defun lua-write-for ()
   "Small function that write a for"
   (interactive)
-  (insert "for i=1: do\n\nend")
+  (insert "for i=1, do\n\nend")
   (backward-char 8)
+  )
+
+(defun lua-write-ioRead ()
+  "Small function that write a for"
+  (interactive)
+  (insert "io.read()")
   )
 
 
@@ -118,6 +133,7 @@ enumerate"
 enumerate"
   (interactive)
   (local-set-key [?\C-p] 'lua-write-print)
+  (local-set-key [?\M-p] 'lua-write-ioRead)
   (local-set-key (kbd "C-é") 'lua-write-for)
 )
 
