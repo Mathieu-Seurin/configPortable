@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/seurin/.oh-my-zsh
+  export ZSH=/home/mathieu/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -89,11 +89,11 @@ fi
 
 source ~/.zle.zsh
 
-source /opt/ros/indigo/setup.zsh
-source ~/catkin_ws/devel/setup.zsh
+#source /opt/ros/indigo/setup.zsh
+#source ~/catkin_ws/devel/setup.zsh
 
 
-export GAZEBO_MODEL_PATH=$(rospack find arm_scenario_simulator)/models:$GAZEBO_MODEL_PATH
+#export GAZEBO_MODEL_PATH=$(rospack find arm_scenario_simulator)/models:$GAZEBO_MODEL_PATH
 
 
-. /home/seurin/torch/install/bin/torch-activate
+#. /home/seurin/torch/install/bin/torch-activate
